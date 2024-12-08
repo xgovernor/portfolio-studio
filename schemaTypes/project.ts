@@ -6,6 +6,12 @@ export const project = defineType({
   type: 'document',
   fields: [
     defineField({
+      name: 'projectName',
+      title: 'Project name',
+      type: 'string',
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
