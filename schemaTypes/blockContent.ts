@@ -93,6 +93,16 @@ export const blockContent = defineType({
         withFilename: true,
       },
     }),
+    defineField({
+      name: 'dualImage',
+      type: 'dualImage',
+      title: 'Dual Image',
+    }),
+    defineField({
+      name: 'projectContent',
+      type: 'projectContent',
+      title: 'Project Section',
+    }),
     // defineField({
     //   type: 'mermaid',
     //   name: 'chart',
