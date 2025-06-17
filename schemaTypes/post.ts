@@ -6,6 +6,21 @@ export const post = defineType({
   type: 'document',
   fields: [
     defineField({
+      title: 'Thumbnail',
+      name: 'image',
+      type: 'image',
+      // fields: [
+      //   defineField({
+      //     title: 'Alt',
+      //     name: 'alt',
+      //     type: 'string',
+      //   }),
+      // ],
+      options: {
+        hotspot: true,
+      },
+    }),
+    defineField({
       name: 'title',
       title: 'Title',
       type: 'string',
@@ -19,55 +34,18 @@ export const post = defineType({
         maxLength: 96,
       },
     }),
+
     defineField({
-      title: 'Report',
-      name: 'report',
-      type: 'object',
-      fields: [
-        defineField({
-          name: 'status',
-          title: 'Status',
-          type: 'boolean',
-        }),
-        defineField({
-          name: 'message',
-          title: 'Message',
-          type: 'string',
-        }),
-      ],
-      description: 'This switche truned on if this content get reported.',
+      title: 'Excerpt',
+      name: 'excerpt',
+      type: 'text',
+      validation: (rule) => rule.required().min(130).max(250),
     }),
     defineField({
       name: 'featured',
       title: 'Featured',
       type: 'boolean',
       description: 'To show a content in featured section.',
-    }),
-    defineField({
-      title: 'Excerpt',
-      name: 'excerpt',
-      type: 'text',
-      validation: (rule) => rule.required().min(130).max(200),
-    }),
-    defineField({
-      title: 'Thumbnail',
-      name: 'image',
-      type: 'image',
-      fields: [
-        defineField({
-          title: 'Caption',
-          name: 'caption',
-          type: 'blockContent',
-        }),
-        defineField({
-          title: 'Alt',
-          name: 'alt',
-          type: 'string',
-        }),
-      ],
-      options: {
-        hotspot: true,
-      },
     }),
     defineField({
       name: 'category',
@@ -139,6 +117,24 @@ export const post = defineType({
           ],
         },
       ],
+    }),
+    defineField({
+      title: 'Report',
+      name: 'report',
+      type: 'object',
+      fields: [
+        defineField({
+          name: 'status',
+          title: 'Status',
+          type: 'boolean',
+        }),
+        defineField({
+          name: 'message',
+          title: 'Message',
+          type: 'string',
+        }),
+      ],
+      description: 'This switche truned on if this content get reported.',
     }),
     defineField({
       name: 'removed',

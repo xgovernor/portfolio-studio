@@ -6,7 +6,7 @@ export const project = defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'projectName',
+      name: 'name',
       title: 'Project name',
       type: 'string',
       validation: (Rule) => Rule.required(),
@@ -16,7 +16,7 @@ export const project = defineType({
       title: 'Slug',
       type: 'slug',
       options: {
-        source: 'projectName',
+        source: 'name',
         maxLength: 96,
       },
       validation: (Rule) => Rule.required(),
@@ -94,8 +94,17 @@ export const project = defineType({
   ],
   preview: {
     select: {
-      title: 'title',
+      title: 'name',
+      subtitle: 'title',
+      date: 'publishedAt',
       media: 'thumbnail',
+    },
+    prepare({title, subtitle, date, media}) {
+      return {
+        title: `${title} - ${subtitle}`, // Name - Title
+        subtitle: date ? new Date(date).toLocaleDateString() : 'No date', // Last edit date
+        media: media || {asset: {url: 'https://via.placeholder.com/150'}},
+      }
     },
   },
 })
